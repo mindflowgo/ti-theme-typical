@@ -20,16 +20,18 @@ layout: local
     hideMenuSearch: 0
     forceRedirect: 1
 ---
-<div class="nav-breadcrumb d-block mt-4">
-    
-    <a href="{{ page_url('local/menus') }}">{{ $locationCurrent->location_name }}</a>&nbsp;
-    <span>
-        <i class="poco-icon-angle-right"></i>&nbsp;
-    </span>
-    <a href="{{ page_url('local/gallery') }}">Gallery</a>&nbsp;
-</div>
-<div id="thumb-wrap">
-    @partial('localReview::review_menu')
+<div class="d-none"> <!-- Hiding reviews for now -->
+    <div class="nav-breadcrumb d-block mt-4">
+        
+        <a href="{{ page_url('local/menus') }}">{{ $locationCurrent->location_name }}</a>&nbsp;
+        <span>
+            <i class="poco-icon-angle-right"></i>&nbsp;
+        </span>
+        <a href="{{ page_url('local/gallery') }}">Gallery</a>&nbsp;
+    </div>
+    <div id="thumb-wrap">
+        @partial('localReview::review_menu')
+    </div>
 </div>
 <div class="bg-white border-bottom my-3 d-flex d-lg-none sticky-category-menu ms-me--15">
     @partial('categories::mobile')
