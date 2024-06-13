@@ -4,14 +4,37 @@
         <div class="row boxes ">
             <div class="box-one">
                 @partial('@box_one')
-
-                <div class="local-control">
-                    @partial('localBox::control')
+                
+                
+                <div class="pt-2 d-flex w-100">
+                    <div class="bd-highlight local-control">
+                        @partial('localBox::control')
+                    </div>
+                    <div class="ms-auto p-2 bd-highlight">
+                        <div class="gbuttons">
+                            <div class="me-2 local-timeslot">
+                                @partial('localBox::timeslot')
+                            </div>
+                            <div class="btn-info-full">
+                                <button
+                                type="button"
+                                class="p-0 btn-more-info text-truncate"
+                                data-bs-toggle="modal"
+                                data-bs-target="#infoModal"
+                                >
+                                <div class="p-0-12">
+                                    <i class="bi bi-info-circle-fill"></i>&nbsp;
+                                    <span>More Info</span>
+                                </div>                                
+                            </button>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
             </div>
         <div class="box-divider d-block d-sm-none"></div>
         
-        <div class="box-two">
+        <div class="box-two small">
             <div class="bt-div">
                 <div class="secondb">
                     <div class="sloto">                        
@@ -44,43 +67,48 @@
                         @endif
                     </div>
                     <div class="divider-v"></div>
-                    <div class="{{ !$locationCurrentSchedule->isOpen() ? 'secondslotoclose' : 'secondsloto' }}">
-                        @partial('localBox::control_local_info')                        
-                    </div>                  
+                    <div class="{{ !$locationCurrentSchedule->isOpen() ? 'secondslotoclose' : 'secondsloto' }}" style="font-size:-1 important!;">
+                        
+                    
+                        @if (!$locationCurrentSchedule->isOpen())
+                            <span class="slotospanclosed">
+                                @lang('igniter.cart::default.text_is_closed')
+                            </span>    
+                        @else
+                            @foreach($locationOrderTypes as $orderType) 
+                            @if ($location->orderTypeIsDelivery() and $orderType->getLabel() == sprintf(lang('igniter.local::default.text_delivery')) )
+                                    <span class="slotospan" style="color: var(--heading);">
+                                        @if ($orderType->getLeadTime())
+                                            {!! sprintf(lang('igniter.local::default.text_in_min'), $orderType->getLeadTime()) !!}
+                                        @endif
+                                    </span>
+                                    <div class="slotodesctwo">
+                                        <span class="mt-desc slotodesc">
+                                            <span class="slotospantwo">
+                                                delivery time 
+                                            </span>
+                                        </span>
+                                    </div>  
+                                @elseif ($location->orderTypeIsCollection() and $orderType->getLabel() == 'Pick-up')
+                                    <span class="slotospan" style="color: var(--heading);">
+                                        @if ($orderType->getLeadTime())
+                                            {!! sprintf(lang('igniter.local::default.text_in_min'), $orderType->getLeadTime()) !!}
+                                        @endif
+                                    </span>
+                                    <div class="slotodesctwo">
+                                        <span class="mt-desc slotodesc">
+                                            <span class="slotospantwo">
+                                                ready for pickup  
+                                            </span>
+                                        </span>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
+
+                    </div>
                 </div>
             </div>
-            <div class="gbuttons">
-                <div class="me-2 local-timeslot">
-                    @partial('localBox::timeslot')
-                </div>
-                <div class="btn-info-full">
-                    <button
-                    type="button"
-                    class="p-0 btn-more-info text-truncate"
-                    data-bs-toggle="modal"
-                    data-bs-target="#infoModal"
-                    >
-                    <div class="p-0-12">
-                        <i class="bi bi-info-circle-fill"></i>&nbsp;
-                        <span>More Info</span>
-                    </div>                                
-                </button>
-                </div>
-                
-                <div class="btn-icon-info">
-                    <button
-                    type="button"
-                    class="btn-more-info-round  text-truncate"
-                    data-bs-toggle="modal"
-                    data-bs-target="#infoModal"
-                    >
-                    <div class="p-0-12">
-                        <i class="bi bi-info-circle-fill"></i>
-                    </div>                                
-                    </button>
-                </div>                  
-                
-            </div>                                
         </div>
     </div>
 </div>

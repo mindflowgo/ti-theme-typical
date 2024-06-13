@@ -6,17 +6,16 @@
 @endif
 <dl class="no-spacing">
     <dd><h1 class="h1">{{ $locationCurrent->getName() }}</h1></dd>
-    <dd class="text-muted">
+    <dd class="text-muted d-flex">
+
         <div class="rating rating-sm">
         @if ($showReviews)           
                 @php $reviewScore = $locationCurrent->reviews_score() @endphp 
                 @if ($reviewScore > 0)
                 <span class="text-start small"><i class="fs-5 bi bi-hand-thumbs-up"></i>&nbsp;{{round(($reviewScore * (100/5)), 0) }}%&nbsp;&nbsp;({{ $locationCurrent->reviews_count ?? 0 }})</span>
-                @else
-                <span class="text-start small badge bg-danger p-2"><i class="poco-icon-store"></i>&nbsp;&nbsp;Nuevo!</span>
                 @endif       
         @endif 
-        <span display="block">•</span>
+        &nbsp; 
         @php
             $openingTime = make_carbon($locationCurrentSchedule->getOpenTime());
         @endphp
@@ -35,6 +34,15 @@
             {!! implode(', ', $openingHours) !!}
         @endif
         </div>
+
+        <button
+        type="button"
+        class="badge badge-secondary text-black text-truncate" style='background-color: transparent; border: 0px;' 
+        data-bs-toggle="modal"
+        data-bs-target="#infoModal"
+        >
+            <i class="bi bi-info-circle-fill"></i>
+        </button>
     </dd>
     <dd>
         <span class="text-muted">{!! format_address($locationCurrent->getAddress(), FALSE) !!}</span>
