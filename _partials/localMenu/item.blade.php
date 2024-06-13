@@ -1,13 +1,5 @@
 <li id="menu{{ $menuItem->menu_id }}" class="product">
     <div class="product-item">
-        @if ($menuItemObject->specialIsActive)
-            <span class="badge-sale"
-            data-bs-tooltip="tooltip"
-            data-bs-placement="bottom"
-            title="{!! sprintf(lang('igniter.local::default.text_end_elapsed'),
-            $menuItemObject->specialDaysRemaining) !!}">
-            Sale!</span>
-        @endif
         <div class="product-transition">
             <div class="product-image">
                 @if ($showMenuImages == 1 && $menuItemObject->hasThumb)
@@ -18,6 +10,15 @@
                 @endif
             </div>
         </div>
+
+        @if ($menuItemObject->specialIsActive)
+            <span class="badge-sale"
+            data-bs-tooltip="tooltip"
+            data-bs-placement="bottom"
+            title="{!! sprintf(lang('igniter.local::default.text_end_elapsed'),
+            $menuItemObject->specialDaysRemaining) !!}">
+            Sale!</span>
+        @endif
         <div class="d-flex flex-wrap align-items-center allergens">
             @partial('@allergens', ['menuItem' => $menuItem, 'menuItemObject' => $menuItemObject])
         </div>
