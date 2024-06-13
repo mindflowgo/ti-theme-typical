@@ -1,10 +1,10 @@
 @if (!$hideMenuSearch)
-    <div class="menu-search">
+    <div class="menu-search d-none">
         @partial('@searchbar')
     </div>
 @endif
 
-@if ($menuIsGrouped)
+@if (1 || $menuIsGrouped)
     @partial('@grouped', ['groupedMenuItems' => $menuList])
 @else
     @partial('@items', ['menuItems' => $menuList])

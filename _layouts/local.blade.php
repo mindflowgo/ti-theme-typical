@@ -28,7 +28,7 @@ description: 'Local layout'
 <head>
     @partial('head')
 </head>
-<body class="d-flex flex-column h-100 {{ $this->page->bodyClass }}">
+<body data-bs-spy="scroll" data-bs-target="#_menu_bar" class="d-flex flex-column h-100 {{ $this->page->bodyClass }}">
     
     <header class="header">
         <nav class="navbar navbar-light navbar-top navbar-expand-lg fixed-top">

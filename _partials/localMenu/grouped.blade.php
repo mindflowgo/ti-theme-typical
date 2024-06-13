@@ -4,17 +4,17 @@
             $menuCategory = array_get($menuListCategories, $categoryId);
             $menuCategoryAlias = strtolower(str_slug($menuCategory->name));
         @endphp
-        <div id="category-{{ $menuCategoryAlias }}-heading" role="tab">
+        <div id="heading_{{ $categoryId }}" class="mt-4" role="tab">
             <h4
                 class="category-title cursor-pointer {{ $loop->iteration >= $menuCollapseCategoriesAfter ? 'collapsed' : '' }}"
                 data-bs-toggle="collapse"
-                data-target="#category-{{ $menuCategoryAlias }}-collapse"
+                data-target="#heading_{{ $categoryId }}-collapse"
                 aria-expanded="false"
-                aria-controls="category-{{ $menuCategoryAlias }}-heading"
+                aria-controls="heading_{{ $categoryId }}"
             >{{ $menuCategory->name }}<span class="collapse-toggle text-muted pull-right"></span></h4>
         </div>
         <div
-            id="category-{{ $menuCategoryAlias }}-collapse"
+            id="heading_{{ $categoryId }}-collapse"
             class="collapse {{ $loop->iteration < $menuCollapseCategoriesAfter ? 'show' : '' }}"
             role="tabpanel" aria-labelledby="{{ $menuCategoryAlias }}"
         >

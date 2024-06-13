@@ -1,6 +1,6 @@
 @foreach ($categories as $category)
 @continue(in_array($category->getKey(), $hiddenCategories))
-@continue($hideEmptyCategory && $category->count_menus < 1)
+@continue($category->count_menus < 1)   <!-- $hideEmptyCategory &&  -->
 
 <li class="cat-home-li">
     <div class="cat-home-li2">
